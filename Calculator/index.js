@@ -29,6 +29,15 @@ function calc(){
     }
 }
 
+operand1Element.addEventListener("input", function() {
+    // Remove non-numeric characters using a regular expression
+    this.value = this.value.replace(/[^0-9]/g, '');
+});
+operand2Element.addEventListener("input", function() {
+    // Remove non-numeric characters using a regular expression
+    this.value = this.value.replace(/[^0-9]/g, '');
+});
+
 addElement.addEventListener('click', 
     function() {
         operator = '+';
@@ -62,7 +71,13 @@ modulusElement.addEventListener('click',
 
 equalsElement.addEventListener('click',
     function(){
-        res = calc();
-        resultElement.innerHTML = res;
+        if(operand1Element.value != "" && operand2Element.value != "" && operatorElement.innerText != ""){
+            res = calc();
+            resultElement.innerHTML = num1 + " " + operator + " " + num2 + " = " + res;
+            operand1Element.value = "";
+            operand2Element.value = "";
+            operatorElement.innerText = "";
+        }
+        
     }
 );
